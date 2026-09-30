@@ -1,11 +1,23 @@
-last_input = -1
+collecting_values = True
 expenses = []
 
-while last_input != 0:
-    last_input = float(input("Enter an expense (or 0 to finish): "))
+while collecting_values:
+    input_str = input("Enter an expense (or 0 to finish): ")
 
-    if last_input != 0:
-        expenses.append(last_input)
+    try:
+        parsed_num = float(input_str)
+    except:
+        print("Invalid input")
+        continue
+
+    if parsed_num < 0:
+        print("Invalid input, number must be greater than or equal to 0")
+        continue
+
+    if parsed_num == 0:
+        collecting_values = False
+    else:
+        expenses.append(parsed_num)
 
 small_expenses = sum(1 for x in expenses if x < 25)
 med_expenses = sum(1 for x in expenses if x >= 25 and x <= 100)

@@ -15,7 +15,7 @@ while playing:
 
     max_attempts = 6
     attempts_taken = 0
-    user_guesses = [] # collect user guesses just for displaying the used-letters keyboard
+    user_guesses = []
 
     correct_answer = choose_word()
 
@@ -26,6 +26,12 @@ while playing:
         print(" ")
         print(f"Attempt {attempts_taken} of {max_attempts}")
         user_guess = get_guess()
+
+        if user_guess in user_guesses:
+            print(f"You have already guessed '{user_guess}'. Try something else.")
+            attempts_taken -= 1
+            continue
+
         user_guesses.append(user_guess)
 
         user_guess_evaluation = evaluate_guess(user_guess, correct_answer)

@@ -7,6 +7,7 @@ user_account = BankAccount(user_name)
 
 bank_open = True
 
+# choice loop
 while bank_open:
     print("Please choose an option:")
     print(" ")
@@ -18,6 +19,7 @@ while bank_open:
 
     user_choice = -1
 
+    # loop to handle user input
     while user_choice == -1:
         user_choice_input = input("")
         user_choice_input = user_choice_input.strip()

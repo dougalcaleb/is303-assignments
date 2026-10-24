@@ -6,8 +6,10 @@ class BankAccount:
     def __init__(self, user_name: str):
         self.balance = 0
         self.user_name = user_name
-        self.account_number = random.randint(100000, 999999)
+        self.account_number = random.randint(100000, 999999) # random 6-digit id for funsies
 
+    # prompts the user for an amount to withdraw, then attempts a withdrawal.
+    # withdrawal will fail if the current balance is lower than the requested amount.
     def prompt_for_withdraw(self):
         print("How much would you like to withdraw?")
         chosen_amount = self._safe_float_prompt()
@@ -15,6 +17,7 @@ class BankAccount:
         print(f"Your balance is now ${self.balance:.2f}")
         print(" ")
 
+    # prompts the user for an amount to deposit, then performs the deposit
     def prompt_for_deposit(self):
         print("How much would you like to deposit?")
         chosen_amount = self._safe_float_prompt()
@@ -22,6 +25,7 @@ class BankAccount:
         print(f"Your balance is now ${self.balance:.2f}")
         print(" ")
 
+    # only handles actual withdrawals. guards against withdrawals exceeding the current balance
     def withdraw(self, amount: float):
         if amount > self.balance:
             print("Your balance is not enough for this withdrawal.")
@@ -29,6 +33,7 @@ class BankAccount:
 
         self.balance -= amount
 
+    # only handles actual deposits
     def deposit(self, amount: float):
         self.balance += amount
 
@@ -38,6 +43,7 @@ class BankAccount:
         print(f"Balance: ${self.balance:.2f}")
         print(" ")
 
+    # generic helper method to reduce duplication
     def _safe_float_prompt(self) -> float:
         user_input_valid = False
         chosen_value = 0
